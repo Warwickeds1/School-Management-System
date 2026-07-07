@@ -1,0 +1,112 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@model IEnumerable<SchoolManagementSystem.Models.Fee>
+
+@{
+    ViewData["Title"] = "Fee Invoices";
+}
+
+<div class="w-100 px-2">
+    <!-- Top Action Row -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Fee Manager</h2>
+            <p class="text-muted small mb-0">Record invoices, track unpaid balances, and record tuition payments</p>
+        </div>
+        <a asp-action="Create" class="btn btn-success d-flex align-items-center gap-2 px-4 shadow-sm text-white fw-semibold">
+            <i class="bi bi-wallet2"></i> Issue New Invoice
+        </a>
+    </div>
+
+    <!-- Main Data Frame Card -->
+    <div class="card shadow border-0 rounded-3 overflow-hidden">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-secondary border-bottom">
+                        <tr>
+                            <th class="ps-4 py-3 fw-semibold text-uppercase small">Student</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Amount</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Due Date</th>
+                            <th class="py-3 fw-semibold text-uppercase small text-center">Status</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Method</th>
+                            <th class="pe-4 py-3 text-end fw-semibold text-uppercase small">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border-top-0">
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center py-5 text-muted">
+                                    <i class="bi bi-cash-stack fs-2 d-block mb-2 text-secondary"></i>
+                                    No fee statements logged. Click "Issue New Invoice" to configure.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <!-- 1. Student Name -->
+                                    <td class="ps-4 py-3 fw-bold text-dark">
+                                        @(item.Student?.Name ?? "Unknown Student")
+                                    </td>
+
+                                    <!-- 2. Fee Amount -->
+                                    <td class="py-3 fw-semibold text-dark">
+                                        @item.Amount.ToString("C")
+                                    </td>
+
+                                    <!-- 3. Due Date -->
+                                    <td class="py-3 text-dark small">
+                                        @item.DueDate.ToString("yyyy-MM-dd")
+                                    </td>
+
+                                    <!-- 4. Payment Status Badge -->
+                                    <td class="py-3 text-center">
+                                        @if (item.Status == "Paid")
+                                        {
+                                            <span class="badge bg-success-subtle text-success px-3 py-1.5 rounded-pill fw-bold">Paid</span>
+                                        }
+                                        else if (item.Status == "Unpaid")
+                                        {
+                                            <span class="badge bg-danger-subtle text-danger px-3 py-1.5 rounded-pill fw-bold">Unpaid</span>
+                                        }
+                                        else if (item.Status == "Partially Paid")
+                                        {
+                                            <span class="badge bg-warning-subtle text-warning px-3 py-1.5 rounded-pill fw-bold">Partial</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary-subtle text-secondary px-3 py-1.5 rounded-pill fw-bold">@item.Status</span>
+                                        }
+                                    </td>
+
+                                    <!-- 5. Payment Method -->
+                                    <td class="py-3 text-muted small">
+                                        @(string.IsNullOrEmpty(item.PaymentMethod) ? "—" : item.PaymentMethod)
+                                    </td>
+
+                                    <!-- 6. Actions -->
+                                    <td class="pe-4 py-3 text-end">
+                                        <div class="d-inline-flex gap-1">
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning px-2.5" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary px-2.5" title="Details">
+                                                <i class="bi bi-info-circle"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger px-2.5" title="Delete">
+                                                <i class="bi bi-trash3"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

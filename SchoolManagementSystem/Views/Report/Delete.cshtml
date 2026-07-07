@@ -1,0 +1,52 @@
+﻿@model SchoolManagementSystem.Models.Report
+
+@{
+    ViewData["Title"] = "Purge Report From Archive";
+}
+
+<!-- High Contrast Danger Banner -->
+<div class="alert alert-danger border-0 shadow-sm rounded-3 mb-3 p-3">
+    <strong>⚠️ Critical Operational Action:</strong> Purging this report permanently erases this archived data snapshot from database history logs.
+</div>
+
+<div class="card shadow border-0 rounded-3 overflow-hidden" style="max-width: 650px; margin: 0 auto;">
+    <!-- Red Danger Header -->
+    <div class="bg-danger text-white p-4">
+        <h3 class="fw-bold m-0">Confirm Report Purge</h3>
+        <p class="text-white-50 m-0 small">Are you sure you want to delete this historical ledger file?</p>
+    </div>
+
+    <div class="card-body p-4">
+        <!-- Report Meta parameters -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Report Label</div>
+            <div class="col-sm-7 fw-bold text-dark">@Model.Name</div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Category</div>
+            <div class="col-sm-7">
+                <span class="badge bg-danger-subtle text-danger px-2.5 py-1 rounded">@Model.Category</span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Date Generated</div>
+            <div class="col-sm-7 text-dark">@Model.GeneratedDate.ToString("g")</div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-sm-5 text-muted fw-semibold">Compiled By</div>
+            <div class="col-sm-7 text-dark">@Model.GeneratedBy</div>
+        </div>
+
+        <!-- Secure submit form structure mapping target model Id -->
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-danger px-4">Confirm Permanent Delete</button>
+            </div>
+        </form>
+    </div>
+</div>

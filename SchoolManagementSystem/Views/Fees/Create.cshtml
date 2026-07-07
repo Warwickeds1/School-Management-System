@@ -1,0 +1,96 @@
+﻿@model SchoolManagementSystem.Models.Fee
+
+@{
+    ViewData["Title"] = "Issue Invoice";
+}
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Green Success Header Block -->
+    <div class="bg-success text-white p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-file-earmark-plus-fill"></i> Record/Issue Student Invoice
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- 1. Student Selection -->
+            <div class="mb-3">
+                <label asp-for="StudentId" class="form-label fw-semibold text-secondary">Student Recipient</label>
+                <select asp-for="StudentId" class="form-select" asp-items="ViewBag.StudentId">
+                    <option value="">Select Student</option>
+                </select>
+                <span asp-validation-for="StudentId" class="text-danger small"></span>
+            </div>
+
+            <!-- 2. Amount Field -->
+            <div class="mb-3">
+                <label asp-for="Amount" class="form-label fw-semibold text-secondary">Invoice Amount ($)</label>
+                <input asp-for="Amount" class="form-control" type="number" step="0.01" placeholder="e.g. 1200.00" />
+                <span asp-validation-for="Amount" class="text-danger small"></span>
+            </div>
+
+            <div class="row">
+                <!-- 3. Due Date Picker -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DueDate" class="form-label fw-semibold text-secondary">Due Date</label>
+                    <input asp-for="DueDate" class="form-control" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="DueDate" class="text-danger small"></span>
+                </div>
+
+                <!-- 4. Payment Date Picker -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="PaymentDate" class="form-label fw-semibold text-secondary">Payment Date (Optional)</label>
+                    <input asp-for="PaymentDate" class="form-control" type="date" />
+                    <span asp-validation-for="PaymentDate" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- 5. Status Dropdown -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Status" class="form-label fw-semibold text-secondary">Payment Status</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="Unpaid">Unpaid</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Partially Paid">Partially Paid</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger small"></span>
+                </div>
+
+                <!-- 6. Payment Method Dropdown -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="PaymentMethod" class="form-label fw-semibold text-secondary">Payment Method</label>
+                    <select asp-for="PaymentMethod" class="form-select">
+                        <option value="">Select Method (None)</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                        <option value="Credit/Debit Card">Credit/Debit Card</option>
+                    </select>
+                    <span asp-validation-for="PaymentMethod" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <!-- 7. Remarks -->
+            <div class="mb-4">
+                <label asp-for="Remarks" class="form-label fw-semibold text-secondary">Transaction Remarks</label>
+                <input asp-for="Remarks" class="form-control" placeholder="e.g. Spring Semester fee installment" />
+                <span asp-validation-for="Remarks" class="text-danger small"></span>
+            </div>
+
+            <!-- Save Footer Actions -->
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-success text-white px-4 fw-semibold">Save Invoice</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

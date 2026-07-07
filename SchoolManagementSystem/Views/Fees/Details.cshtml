@@ -1,0 +1,83 @@
+﻿@model SchoolManagementSystem.Models.Fee
+
+@{
+    ViewData["Title"] = "Invoice Statement details";
+}
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Gray Header Block -->
+    <div class="bg-primary text-white p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-info-circle-fill"></i> Fee Statement Details
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <!-- 1. Student Name -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Student Recipient</div>
+            <div class="col-sm-7 fw-bold text-dark">@(Model.Student?.Name ?? "Unknown Student")</div>
+        </div>
+
+        <!-- 2. Invoice Amount -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Amount Invoiced</div>
+            <div class="col-sm-7 text-dark fw-bold">@Model.Amount.ToString("C")</div>
+        </div>
+
+        <!-- 3. Due Date -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Invoice Due Date</div>
+            <div class="col-sm-7 text-dark fw-medium">@Model.DueDate.ToString("MMMM dd, yyyy")</div>
+        </div>
+
+        <!-- 4. Payment Date -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Recorded Payment Date</div>
+            <div class="col-sm-7 text-dark">
+                @(Model.PaymentDate.HasValue? Model.PaymentDate.Value.ToString("MMMM dd, yyyy") : "No Payment Recorded")
+            </div>
+        </div>
+
+        <!-- 5. Status -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Billing Status</div>
+            <div class="col-sm-7">
+                @if (Model.Status == "Paid")
+                {
+                    <span class="badge bg-success-subtle text-success px-3 py-1.5 rounded-pill fw-bold">Paid</span>
+                }
+                else if (Model.Status == "Unpaid")
+                {
+                    <span class="badge bg-danger-subtle text-danger px-3 py-1.5 rounded-pill fw-bold">Unpaid</span>
+                }
+                else if (Model.Status == "Partially Paid")
+                {
+                    <span class="badge bg-warning-subtle text-warning px-3 py-1.5 rounded-pill fw-bold">Partially Paid</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary-subtle text-secondary px-3 py-1.5 rounded-pill fw-bold">@Model.Status</span>
+                }
+            </div>
+        </div>
+
+        <!-- 6. Payment Method -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Method Used</div>
+            <div class="col-sm-7 text-dark fw-medium">@(string.IsNullOrEmpty(Model.PaymentMethod) ? "—" : Model.PaymentMethod)</div>
+        </div>
+
+        <!-- 7. Remarks -->
+        <div class="row mb-4">
+            <div class="col-sm-5 text-muted fw-semibold">Statement Notes</div>
+            <div class="col-sm-7 text-dark text-italic">@(string.IsNullOrEmpty(Model.Remarks) ? "No remarks added" : Model.Remarks)</div>
+        </div>
+
+        <!-- Action Buttons Footer -->
+        <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+            <a asp-action="Index" class="btn btn-outline-secondary px-4">Back to List</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary px-4">Edit Invoice</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model SchoolManagementSystem.Models.Class
+
+@{
+    ViewData["Title"] = "Class Track Details";
+}
+
+<div class="w-100 px-2">
+
+    <div class="card shadow border-0 rounded-3 w-100">
+        <div class="bg-primary p-4 text-white text-center rounded-top">
+            <h4 class="fw-bold m-0">@Model.ClassName</h4>
+            <span class="badge bg-light text-primary mt-2">Class Configuration Card</span>
+        </div>
+
+        <div class="card-body p-4">
+            <h5 class="text-secondary fw-bold mb-4 border-bottom pb-2">Academic & Room Allocation</h5>
+
+            <div class="row mb-3">
+                <div class="col-sm-4 text-muted fw-semibold">Grade Level</div>
+                <div class="col-sm-8 fw-bold text-dark">@Model.ClassName</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-4 text-muted fw-semibold">Assigned Section</div>
+                <div class="col-sm-8 text-dark">@Model.Section</div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-sm-4 text-muted fw-semibold">Classroom Room No.</div>
+                <div class="col-sm-8 text-muted">Room @Model.RoomNumber</div>
+            </div>
+
+            @if (Model.Teacher != null)
+            {
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted fw-semibold">Class Teacher</div>
+                    <div class="col-sm-8 text-primary fw-medium">@Model.Teacher.Name</div>
+                </div>
+            }
+
+            <div class="mt-4 d-flex gap-2 justify-content-end">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Back to List</a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary px-4">Edit Configuration</a>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,62 @@
+﻿@model SchoolManagementSystem.Models.Teacher
+
+@{
+    ViewData["Title"] = "De-register Faculty";
+}
+
+<!-- Top Warning Status Banner -->
+<div class="alert alert-danger border-0 shadow-sm rounded-3 mb-4 p-3">
+    <strong>⚠️ Severe Action Flag:</strong> Are you absolutely sure you want to permanently delete this teacher's file? This will completely unassign them from any active class track tracks.
+</div>
+
+<!-- Main Display Card Frame -->
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Red Header Block -->
+    <div class="bg-danger text-white p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-exclamation-triangle-fill"></i> Confirm De-registration
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <!-- 1. Full Name -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Full Name</div>
+            <div class="col-sm-7 fw-bold text-dark">@Model.Name</div>
+        </div>
+
+        <!-- 2. Gender -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Gender</div>
+            <div class="col-sm-7 text-dark">@(string.IsNullOrEmpty(Model.Gender) ? "Not Specified" : Model.Gender)</div>
+        </div>
+
+        <!-- 3. Subject Expertise -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Subject Expertise</div>
+            <div class="col-sm-7 text-dark fw-medium">@Model.Subject</div>
+        </div>
+
+        <!-- 4. Email Address -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Email Address</div>
+            <div class="col-sm-7 text-dark">@Model.Email</div>
+        </div>
+
+        <!-- 5. Highest Qualification -->
+        <div class="row mb-4">
+            <div class="col-sm-5 text-muted fw-semibold">Highest Qualification</div>
+            <div class="col-sm-7 text-dark">@Model.Qualification</div>
+        </div>
+
+        <!-- Action Form Engine -->
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-danger px-4">Confirm Permanent Delete</button>
+            </div>
+        </form>
+    </div>
+</div>

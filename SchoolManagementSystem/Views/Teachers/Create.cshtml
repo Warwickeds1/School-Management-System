@@ -1,0 +1,64 @@
+﻿@model SchoolManagementSystem.Models.Teacher
+
+@{
+    ViewData["Title"] = "Register Faculty";
+}
+
+<div class="card shadow border-0 rounded-3">
+    <div class="card-body p-4">
+        
+        <h3 class="fw-bold text-primary mb-3">Register New Teacher</h3>
+        
+        <hr />
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label fw-semibold text-secondary">Full Name</label>
+                <input asp-for="Name" class="form-control" placeholder="e.g. Mohammad Ali" />
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Gender" class="form-label fw-semibold text-secondary">Gender</label>
+                <select asp-for="Gender" class="form-select">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Subject" class="form-label fw-semibold text-secondary">Subject Expertise</label>
+                <input asp-for="Subject" class="form-control" placeholder="e.g. Mathematics, Computer Science" />
+                <span asp-validation-for="Subject" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold text-secondary">Email Address</label>
+                <input asp-for="Email" class="form-control" type="email" placeholder="name@school.com" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Qualification" class="form-label fw-semibold text-secondary">Highest Qualification</label>
+                <input asp-for="Qualification" class="form-control" placeholder="e.g. MCS, MS-CS, B.Ed" />
+                <span asp-validation-for="Qualification" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-primary px-4">Register Faculty</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

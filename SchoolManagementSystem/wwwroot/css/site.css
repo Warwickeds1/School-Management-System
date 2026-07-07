@@ -1,0 +1,98 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+
+/* Modern Sidebar Navigation Styling */
+/*.sidebar-nav {
+    background: #1e293b !important;*/ /* Premium Dark Slate Background */
+    /*min-height: 100vh;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+}*/
+
+/* Base style for every Nav Link */
+/*.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: #94a3b8 !important;*/ /* Soft muted text by default */
+    /*text-decoration: none !important;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    transition: all 0.25s ease-in-out;*/ /* Smooth glide effect */
+    /*border-radius: 0 8px 8px 0;
+    margin-right: 12px;
+}*/
+
+    /* The Dynamic Hover Effect ("Popping Out" & Changing Color) */
+    /*.sidebar-link:hover {
+        color: #ffffff !important;*/ /* Turn text crisp white */
+        /*background: rgba(255, 255, 255, 0.06);*/ /* Subtle highlight block */
+        /*border-left-color: #3b82f6;*/ /* Blue indicator strip */
+        /*transform: translateX(6px);*/ /* The physical "pop out" shift to the right */
+        /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }*/
+
+    /* Active State (When the user is currently on that module's page) */
+    /*.sidebar-link.active-module {
+        color: #3b82f6 !important;*/ /* Primary theme color text */
+        /*background: rgba(59, 130, 246, 0.1) !important;*/ /* Soft blue tint background */
+        /*border-left-color: #3b82f6;*/ /* Solid blue indicator */
+        /*font-weight: 600;
+    }*/
+
+/* Sidebar Branding Section */
+/*.sidebar-brand h3 {
+    color: #f8fafc;
+    letter-spacing: 0.5px;
+}*/
+
+
+
+/* Apply transitions only to buttons inside the main content area */
+main .btn {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Scope the fade-in animation to the main container only */
+main {
+    animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Ensure the button scale effect is also scoped to content */
+main .btn:active {
+    transform: scale(0.95);
+}

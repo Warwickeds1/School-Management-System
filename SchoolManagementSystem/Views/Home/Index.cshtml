@@ -1,0 +1,559 @@
+﻿@using System.Security.Claims
+@inject SchoolManagementSystem.Services.IPermissionService Permission
+@{
+    ViewData["Title"] = "Welcome Dashboard";
+    var userName = User.Identity?.IsAuthenticated == true ? User.Identity.Name : "Guest User";
+    var userRole = User.FindFirst(ClaimTypes.Role)?.Value ?? "Guest";
+}
+
+<style>
+    /* Premium Welcome Dashboard Custom CSS */
+    .welcome-header-card {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border: none;
+        color: #f8fafc;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .welcome-header-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+    /* Dynamic Badging */
+    .role-badge {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* Live Clock Styling */
+    .clock-badge {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-family: 'Courier New', Courier, monospace;
+        letter-spacing: 1px;
+    }
+
+    /* Quick Launch Navigation Tiles */
+    .launchpad-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none !important;
+        color: #334155 !important;
+    }
+
+        .launchpad-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: #3b82f6;
+        }
+
+        .launchpad-card .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.25s ease;
+        }
+
+        .launchpad-card:hover .icon-box {
+            transform: scale(1.1);
+        }
+
+    /* Interactive Scratchpad Tool */
+    .scratchpad-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background: #ffffff;
+    }
+
+    .scratchpad-textarea {
+        resize: none;
+        background: #fdfdfd;
+        border: 1px dashed #cbd5e1;
+        border-radius: 8px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #475569;
+    }
+
+        .scratchpad-textarea:focus {
+            background: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+    .to-do-item {
+        background: #f8fafc;
+        border-left: 3px solid #64748b;
+        transition: all 0.2s ease;
+    }
+
+        .to-do-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+            border-left-color: #10b981;
+        }
+</style>
+
+<div class="container-fluid py-2">
+    <!-- 1. Unified Dynamic Welcome Banner -->
+    <div class="card welcome-header-card p-4 mb-4 rounded-3 shadow-sm">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                @if (userRole == "Admin")
+                {
+                    <span class="badge bg-primary text-uppercase px-3 py-1.5 rounded-pill mb-2 fw-semibold role-badge">System Root Workspace</span>
+                }
+                else if (userRole == "Teacher")
+                {
+                    <span class="badge bg-success text-uppercase px-3 py-1.5 rounded-pill mb-2 fw-semibold role-badge">Faculty Portal Desk</span>
+                }
+                else
+                {
+                    <span class="badge bg-info text-dark text-uppercase px-3 py-1.5 rounded-pill mb-2 fw-semibold role-badge">Student Desk Portal</span>
+                }
+                <h1 class="display-5 fw-bold m-0 tracking-tight" id="dynamicGreeting">Welcome Back!</h1>
+                <p class="text-slate-300 mt-2 mb-0 fs-5 opacity-75">
+                    Authenticated session logged as <strong class="text-white">@userName</strong> (@userRole profile tier).
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <div class="clock-badge d-inline-block text-white p-3 rounded-3 text-center">
+                    <div class="small text-uppercase text-white-50 fw-semibold mb-1" id="currentDay">Today</div>
+                    <div class="fs-3 fw-bold" id="liveClock">00:00:00 AM</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Role-Conditioned View Routing Blocks -->
+    @if (userRole == "Admin")
+    {
+        <!-- =================== ADMINISTRATOR PORTAL VIEW =================== -->
+        <div class="row g-4">
+            <!-- Launchpad (Full Management Access) -->
+            <div class="col-lg-7">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-grid-fill text-primary"></i> Administrative Launchpad
+                </h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <a asp-controller="Students" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                            <div class="icon-box bg-primary-subtle text-primary">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Students</h6>
+                                <span class="text-muted small">Manage enrollment & files</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a asp-controller="Teachers" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                            <div class="icon-box bg-success-subtle text-success">
+                                <i class="bi bi-person-badge-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Teachers</h6>
+                                <span class="text-muted small">Faculty profiles & logs</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a asp-controller="Classes" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                            <div class="icon-box bg-info-subtle text-info">
+                                <i class="bi bi-door-open-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Classes</h6>
+                                <span class="text-muted small">Configure grade cohorts</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a asp-controller="Attendance" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                            <div class="icon-box bg-warning-subtle text-warning">
+                                <i class="bi bi-calendar-check-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Attendance</h6>
+                                <span class="text-muted small">Track daily operations</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a asp-controller="Fees" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                            <div class="icon-box bg-danger-subtle text-danger">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Fees</h6>
+                                <span class="text-muted small">Manage school accounts</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <a asp-controller="Report" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                            <div class="icon-box bg-secondary-subtle text-secondary">
+                                <i class="bi bi-bar-chart-line-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Reports</h6>
+                                <span class="text-muted small">Audits & snapshotted logs</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scratchpad & Task Management -->
+            <div class="col-lg-5">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-journals text-primary"></i> Admin Scratchpad
+                </h5>
+
+                <div class="card scratchpad-card shadow-sm p-3 mb-4">
+                    <label class="form-label text-secondary small fw-bold mb-2">My Daily Notes (Auto-Saves Locally)</label>
+                    <textarea class="form-control scratchpad-textarea p-3 mb-2" id="scratchpadInput" rows="4" placeholder="Write reminders, rough ideas, or session highlights..."></textarea>
+                    <span class="text-muted small d-block text-end" id="saveIndicator">Saved to browser storage ✓</span>
+                </div>
+
+                <div class="card border-0 shadow-sm p-3 bg-white rounded-3">
+                    <h6 class="fw-bold mb-2 text-dark">Quick Task Checklist</h6>
+                    <div class="input-group mb-3">
+                        <input type="text" id="todoInput" class="form-control" placeholder="Add custom step..." />
+                        <button class="btn btn-primary" type="button" id="addTodoBtn"><i class="bi bi-plus-lg"></i></button>
+                    </div>
+                    <div id="todoContainer" class="d-flex flex-column gap-2" style="max-height: 200px; overflow-y: auto;">
+                        <!-- Managed dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (userRole == "Teacher")
+    {
+        <!-- =================== FACULTY PORTAL VIEW =================== -->
+        <div class="row g-4">
+            <!-- Faculty Operations Column -->
+            <div class="col-lg-7">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-person-workspace text-success"></i> My Classroom Tools
+                </h5>
+                <div class="row g-3">
+                    @if (Permission.HasAccess(User, "Classes", "View"))
+                    {
+                        <div class="col-md-6">
+                            <a asp-controller="Classes" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                                <div class="icon-box bg-info-subtle text-info">
+                                    <i class="bi bi-door-open-fill"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">My Class Units</h6>
+                                    <span class="text-muted small">Assigned classes & schedules</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    @if (Permission.HasAccess(User, "Attendance", "View"))
+                    {
+                        <div class="col-md-6">
+                            <a asp-controller="Attendance" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                                <div class="icon-box bg-warning-subtle text-warning">
+                                    <i class="bi bi-calendar-check-fill"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Log Attendance</h6>
+                                    <span class="text-muted small">Take daily student rosters</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    @if (Permission.HasAccess(User, "Students", "View"))
+                    {
+                        <div class="col-md-6">
+                            <a asp-controller="Students" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                                <div class="icon-box bg-primary-subtle text-primary">
+                                    <i class="bi bi-people-fill"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Student List</h6>
+                                    <span class="text-muted small">View educational profiles</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    <div class="col-md-6">
+                        <div class="launchpad-card p-3 d-flex align-items-center gap-3 cursor-default" style="pointer-events: none; opacity: 0.8;">
+                            <div class="icon-box bg-success-subtle text-success">
+                                <i class="bi bi-book-half"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Curriculums</h6>
+                                <span class="text-muted small">Academic syllabus outlines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Faculty Notes & Agenda -->
+            <div class="col-lg-5">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-journals text-success"></i> My Lesson Planner
+                </h5>
+                <div class="card scratchpad-card shadow-sm p-3 mb-4">
+                    <label class="form-label text-secondary small fw-bold mb-2">Lesson Planning Scratchpad</label>
+                    <textarea class="form-control scratchpad-textarea p-3 mb-2" id="scratchpadInput" rows="4" placeholder="Plan lecture content, quizzes, or assignments..."></textarea>
+                    <span class="text-muted small d-block text-end" id="saveIndicator">Saved locally ✓</span>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- =================== STUDENT DESK PORTAL VIEW =================== -->
+        <div class="row g-4">
+            <!-- Student Center Column -->
+            <div class="col-lg-7">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-mortarboard text-info"></i> Academic Desk
+                </h5>
+                <div class="row g-3">
+                    @if (Permission.HasAccess(User, "Classes", "View"))
+                    {
+                        <div class="col-md-6">
+                            <a asp-controller="Classes" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                                <div class="icon-box bg-info-subtle text-info">
+                                    <i class="bi bi-door-open-fill"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">My Class Roster</h6>
+                                    <span class="text-muted small">Assigned room & teacher</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    @if (Permission.HasAccess(User, "Attendance", "View"))
+                    {
+                        <div class="col-md-6">
+                            <a asp-controller="Attendance" asp-action="Index" class="launchpad-card p-3 d-flex align-items-center gap-3">
+                                <div class="icon-box bg-warning-subtle text-warning">
+                                    <i class="bi bi-calendar-check-fill"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">My Attendance</h6>
+                                    <span class="text-muted small">Verify tracked presence</span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                    <div class="col-md-6">
+                        <div class="launchpad-card p-3 d-flex align-items-center gap-3 cursor-default" style="pointer-events: none; opacity: 0.85;">
+                            <div class="icon-box bg-success-subtle text-success">
+                                <i class="bi bi-journal-check"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">My Grades</h6>
+                                <span class="text-muted small">Report card releases</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="launchpad-card p-3 d-flex align-items-center gap-3 cursor-default" style="pointer-events: none; opacity: 0.85;">
+                            <div class="icon-box bg-danger-subtle text-danger">
+                                <i class="bi bi-file-earmark-medical"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">School Policy</h6>
+                                <span class="text-muted small">Rules & student handbook</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Study Tools -->
+            <div class="col-lg-5">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-fill text-info"></i> Student Study Desk
+                </h5>
+                <div class="card scratchpad-card shadow-sm p-3 mb-4">
+                    <label class="form-label text-secondary small fw-bold mb-2">My Study Notes (Auto-Saves)</label>
+                    <textarea class="form-control scratchpad-textarea p-3 mb-2" id="scratchpadInput" rows="4" placeholder="Jot down notes, exam prep outlines, or class questions..."></textarea>
+                    <span class="text-muted small d-block text-end" id="saveIndicator">Saved locally ✓</span>
+                </div>
+
+                <div class="card border-0 shadow-sm p-3 bg-white rounded-3">
+                    <h6 class="fw-bold mb-2 text-dark">My Study & Homework List</h6>
+                    <div class="input-group mb-3">
+                        <input type="text" id="todoInput" class="form-control" placeholder="Add study target..." />
+                        <button class="btn btn-info text-white" type="button" id="addTodoBtn"><i class="bi bi-plus-lg"></i></button>
+                    </div>
+                    <div id="todoContainer" class="d-flex flex-column gap-2" style="max-height: 200px; overflow-y: auto;">
+                        <!-- Managed dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // --- A. Dynamic Greeting & Live Clock System ---
+        const clockElement = document.getElementById("liveClock");
+        const dayElement = document.getElementById("currentDay");
+        const greetingElement = document.getElementById("dynamicGreeting");
+        const userName = "@userName";
+
+        function updateTime() {
+            if (!clockElement) return;
+            const now = new Date();
+
+            // Format Time
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // convert 0 to 12
+            clockElement.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+            // Format Date Label
+            if (dayElement) {
+                const options = { weekday: 'long', month: 'short', day: 'numeric' };
+                dayElement.textContent = now.toLocaleDateString('en-US', options);
+            }
+
+            // Compute dynamic day-based greetings
+            if (greetingElement) {
+                const currentHour = now.getHours();
+                let greetingStr = "Welcome Back, ";
+                if (currentHour < 12) {
+                    greetingStr = "Good Morning, ";
+                } else if (currentHour < 18) {
+                    greetingStr = "Good Afternoon, ";
+                } else {
+                    greetingStr = "Good Evening, ";
+                }
+                greetingElement.textContent = `${greetingStr}${userName}!`;
+            }
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // --- B. Auto-saving Scratchpad Logic (Defensive check for existance) ---
+        const scratchpad = document.getElementById("scratchpadInput");
+        const saveIndicator = document.getElementById("saveIndicator");
+
+        if (scratchpad) {
+            // Load saved item if it exists
+            const savedNotes = localStorage.getItem("sms_user_scratchpad_" + userName);
+            if (savedNotes) {
+                scratchpad.value = savedNotes;
+            }
+
+            let saveTimeout;
+            scratchpad.addEventListener("input", function () {
+                if (saveIndicator) saveIndicator.textContent = "Writing...";
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    localStorage.setItem("sms_user_scratchpad_" + userName, scratchpad.value);
+                    if (saveIndicator) saveIndicator.textContent = "Saved to browser storage ✓";
+                }, 800);
+            });
+        }
+
+        // --- C. Local Checklist / Task System (Defensive check for existance) ---
+        const todoInput = document.getElementById("todoInput");
+        const addTodoBtn = document.getElementById("addTodoBtn");
+        const todoContainer = document.getElementById("todoContainer");
+
+        if (todoInput && addTodoBtn && todoContainer) {
+            let todos = JSON.parse(localStorage.getItem("sms_user_todos_" + userName) || "[]");
+
+            function saveTodos() {
+                localStorage.setItem("sms_user_todos_" + userName, JSON.stringify(todos));
+            }
+
+            function renderTodos() {
+                todoContainer.innerHTML = "";
+                if (todos.length === 0) {
+                    todoContainer.innerHTML = `<span class="text-muted small text-center py-2 italic">Workspace is empty.</span>`;
+                    return;
+                }
+
+                todos.forEach((todo, index) => {
+                    const itemDiv = document.createElement("div");
+                    itemDiv.className = `to-do-item p-2 d-flex justify-content-between align-items-center rounded ${todo.completed ? 'completed' : ''}`;
+                    itemDiv.innerHTML = `
+                        <div class="d-flex align-items-center gap-2">
+                            <input class="form-check-input mt-0" type="checkbox" ${todo.completed ? 'checked' : ''} onchange="toggleTodo(${index})">
+                            <span class="small fw-semibold" style="cursor: pointer;" onclick="toggleTodo(${index})">${escapeHtml(todo.text)}</span>
+                        </div>
+                        <button class="btn btn-sm btn-link text-danger p-0 border-0" onclick="deleteTodo(${index})">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    `;
+                    todoContainer.appendChild(itemDiv);
+                });
+            }
+
+            window.toggleTodo = function (index) {
+                todos[index].completed = !todos[index].completed;
+                saveTodos();
+                renderTodos();
+            };
+
+            window.deleteTodo = function (index) {
+                todos.splice(index, 1);
+                saveTodos();
+                renderTodos();
+            };
+
+            addTodoBtn.addEventListener("click", function () {
+                const text = todoInput.value.trim();
+                if (text) {
+                    todos.push({ text: text, completed: false });
+                    saveTodos();
+                    renderTodos();
+                    todoInput.value = "";
+                }
+            });
+
+            todoInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    addTodoBtn.click();
+                }
+            });
+
+            function escapeHtml(text) {
+                const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+                return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+
+            renderTodos();
+        }
+    });
+</script>

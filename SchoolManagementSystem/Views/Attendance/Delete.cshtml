@@ -1,0 +1,55 @@
+﻿@model SchoolManagementSystem.Models.Attendance
+
+@{
+    ViewData["Title"] = "Remove Attendance Record";
+}
+
+<!-- Warning Alert Banner -->
+<div class="alert alert-danger border-0 shadow-sm rounded-3 mb-4 p-3">
+    <strong>⚠️ Severe Action Warning:</strong> You are about to permanently delete this student's attendance record for this date.
+</div>
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Red Header Block -->
+    <div class="bg-danger text-white p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-exclamation-triangle-fill"></i> Confirm Entry Deletion
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <!-- 1. Student Name -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Student Name</div>
+            <div class="col-sm-7 fw-bold text-dark">@(Model.Student?.Name ?? "Unknown Student")</div>
+        </div>
+
+        <!-- 2. Date -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Attendance Date</div>
+            <div class="col-sm-7 text-dark fw-semibold">@Model.Date.ToString("MMMM dd, yyyy")</div>
+        </div>
+
+        <!-- 3. Status -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Status</div>
+            <div class="col-sm-7 fw-bold text-dark">@Model.Status</div>
+        </div>
+
+        <!-- 4. Remarks -->
+        <div class="row mb-4">
+            <div class="col-sm-5 text-muted fw-semibold">Remarks</div>
+            <div class="col-sm-7 text-dark">@(string.IsNullOrEmpty(Model.Remarks) ? "None" : Model.Remarks)</div>
+        </div>
+
+        <!-- Action Form Engine -->
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-danger px-4 fw-semibold">Delete Permanently</button>
+            </div>
+        </form>
+    </div>
+</div>

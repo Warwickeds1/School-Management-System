@@ -1,0 +1,99 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@model IEnumerable<SchoolManagementSystem.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Faculty Roster";
+}
+
+<div class="w-100 px-2">
+    <!-- Top Action Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Faculty Roster</h2>
+            <p class="text-muted small mb-0">Manage and view all registered school instructors</p>
+        </div>
+        <a asp-action="Create" class="btn btn-success d-flex align-items-center gap-2 px-4 shadow-sm">
+            <i class="bi bi-person-plus-fill"></i> Register New Teacher
+        </a>
+    </div>
+
+    <!-- Main Data Frame Card -->
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-secondary border-bottom">
+                        <tr>
+                            <th class="ps-4 py-3 fw-semibold text-uppercase small">Full Name</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Gender</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Subject Expertise</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Email Address</th>
+                            <th class="py-3 fw-semibold text-uppercase small">Qualification</th>
+                            <th class="pe-4 py-3 text-end fw-semibold text-uppercase small">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border-top-0">
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center py-5 text-muted">
+                                    <i class="bi bi-people fs-2 d-block mb-2 text-secondary"></i>
+                                    No faculty records found. Click "Register New Teacher" to get started.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <!-- 1. Name -->
+                                    <td class="ps-4 py-3 fw-bold text-dark">
+                                        @item.Name
+                                    </td>
+
+                                    <!-- 2. Gender -->
+                                    <td class="py-3 text-secondary">
+                                        @(string.IsNullOrEmpty(item.Gender) ? "—" : item.Gender)
+                                    </td>
+
+                                    <!-- 3. Subject Expertise -->
+                                    <td class="py-3">
+                                        <span class="badge bg-primary-subtle text-primary px-2 py-1.5 rounded fw-medium">
+                                            @item.Subject
+                                        </span>
+                                    </td>
+
+                                    <!-- 4. Email -->
+                                    <td class="py-3 text-muted small">
+                                        @item.Email
+                                    </td>
+
+                                    <!-- 5. Qualification -->
+                                    <td class="py-3 text-dark fw-medium">
+                                        @item.Qualification
+                                    </td>
+
+                                    <!-- 6. Compact Action Engine -->
+                                    <td class="pe-4 py-3 text-end">
+                                        <div class="d-inline-flex gap-1">
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning px-2.5" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary px-2.5" title="Details">
+                                                <i class="bi bi-info-circle"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger px-2.5" title="Delete">
+                                                <i class="bi bi-trash3"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

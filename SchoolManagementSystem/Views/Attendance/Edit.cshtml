@@ -1,0 +1,66 @@
+﻿@model SchoolManagementSystem.Models.Attendance
+
+@{
+    ViewData["Title"] = "Modify Attendance Record";
+}
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Yellow Warning Header Block (with dark text for readability) -->
+    <div class="bg-warning text-dark p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-pencil-square"></i> Modify Attendance Record
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <!-- 1. Date -->
+            <div class="mb-3">
+                <label asp-for="Date" class="form-label fw-semibold text-secondary">Date of Record</label>
+                <input asp-for="Date" class="form-control" type="date" />
+                <span asp-validation-for="Date" class="text-danger small"></span>
+            </div>
+
+            <!-- 2. Student Selector -->
+            <div class="mb-3">
+                <label asp-for="StudentId" class="form-label fw-semibold text-secondary">Student Name</label>
+                <select asp-for="StudentId" class="form-select" asp-items="ViewBag.StudentId"></select>
+                <span asp-validation-for="StudentId" class="text-danger small"></span>
+            </div>
+
+            <!-- 3. Attendance Status Options -->
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label fw-semibold text-secondary">Attendance Status</label>
+                <select asp-for="Status" class="form-select">
+                    <option value="Present">Present</option>
+                    <option value="Absent">Absent</option>
+                    <option value="Late">Late</option>
+                    <option value="Excused">Excused</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger small"></span>
+            </div>
+
+            <!-- 4. Optional Remarks -->
+            <div class="mb-4">
+                <label asp-for="Remarks" class="form-label fw-semibold text-secondary">Optional Remarks / Explanation</label>
+                <input asp-for="Remarks" class="form-control" />
+                <span asp-validation-for="Remarks" class="text-danger small"></span>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-warning px-4">Save Updates</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

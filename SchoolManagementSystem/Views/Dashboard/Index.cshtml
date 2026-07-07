@@ -1,0 +1,102 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="w-100 px-2">
+    
+    <h2 class="fw-bold text-dark mb-1">School Dashboard</h2>
+    <p class="text-muted small mb-4">Real-time institutional management overview</p>
+
+    <h5 class="text-secondary fw-bold mb-3 pb-1 border-bottom">Administrative Overview</h5>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow border-0 rounded-3 h-100 p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Total Enrollment</span>
+                    <span class="badge bg-primary-subtle text-primary p-2 rounded-circle">
+                        <i class="bi bi-people-fill"></i>
+                    </span>
+                </div>
+                <h2 class="fw-bold m-0 text-dark">3</h2>
+                <small class="text-primary fw-medium mt-1">Active Students</small>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow border-0 rounded-3 h-100 p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Faculty Roster</span>
+                    <span class="badge bg-success-subtle text-success p-2 rounded-circle">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </span>
+                </div>
+                <h2 class="fw-bold m-0 text-dark">4</h2>
+                <small class="text-success fw-medium mt-1">Active Teachers</small>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow border-0 rounded-3 h-100 p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Class Track Units</span>
+                    <span class="badge bg-warning-subtle text-warning p-2 rounded-circle">
+                        <i class="bi bi-door-open-fill"></i>
+                    </span>
+                </div>
+                <h2 class="fw-bold m-0 text-dark">10</h2>
+                <small class="text-warning fw-dark mt-1">Assigned Rooms</small>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="card shadow border-0 rounded-3 h-100 p-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <span class="text-muted small fw-semibold">Daily Attendance</span>
+                    <span class="badge bg-info-subtle text-info p-2 rounded-circle">
+                        <i class="bi bi-calendar-check-fill"></i>
+                    </span>
+                </div>
+                <h2 class="fw-bold m-0 text-dark">94%</h2>
+                <small class="text-info fw-medium mt-1">Average Present Rate</small>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="text-secondary fw-bold mb-3 pb-1 border-bottom">Financial Performance Workspace</h5>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-3 p-4 border-start border-primary border-4">
+                <div class="text-muted small fw-semibold mb-1">Gross Revenue Collection</div>
+                <h3 class="fw-bold text-dark mb-2">Rs. 0.00</h3>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+                </div>
+                <small class="text-muted d-block mt-2">Target benchmark tracking active</small>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-3 p-4 border-start border-warning border-4">
+                <div class="text-muted small fw-semibold mb-1">Average Fee Structural Index</div>
+                <h3 class="fw-bold text-dark mb-2">Rs. 0</h3>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%"></div>
+                </div>
+                <small class="text-muted d-block mt-2">Calculated across registered classes</small>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow border-0 rounded-3 p-4 border-start border-success border-4">
+                <div class="text-muted small fw-semibold mb-1">Maximum Fee Ceiling</div>
+                <h3 class="fw-bold text-dark mb-2">Rs. 0</h3>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                </div>
+                <small class="text-muted d-block mt-2">Peak value configuration tier</small>
+            </div>
+        </div>
+    </div>
+</div>
+

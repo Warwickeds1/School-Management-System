@@ -1,0 +1,94 @@
+﻿<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+@model IEnumerable<SchoolManagementSystem.Models.Student>
+@inject SchoolManagementSystem.Services.IPermissionService Permission
+
+@{
+    ViewData["Title"] = "Students Roster";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold m-0 text-dark">Students Directory</h2>
+    @if (Permission.HasAccess(User, "Students", "Add"))
+    {
+        <a asp-action="Create" class="btn btn-success d-flex align-items-center gap-2 px-4 shadow-sm">
+            <i class="bi bi-person-plus-fill"></i> Enrol New Student
+        </a>
+    }
+</div>
+
+<div class="card shadow border-0 rounded-3">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light text-uppercase fs-7 fw-bold border-bottom">
+                <tr>
+                    <th class="ps-4">Profile</th>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Age)</th>
+                    <th>@Html.DisplayNameFor(model => model.Gender)</th>
+
+                    <th>Assigned Class Section</th>
+                    <th class="text-end pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="ps-4">
+                            @if (!string.IsNullOrEmpty(item.ProfilePicturePath))
+                            {
+                                <img src="/images/students/@item.ProfilePicturePath"
+                                     class="rounded-circle object-fit-cover border"
+                                     style="width: 40px; height: 40px;"
+                                     alt="Student Photo" />
+                            }
+                            else
+                            {
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">
+                                    @(!string.IsNullOrEmpty(item.Name) ? item.Name.Substring(0, 1).ToUpper() : "S")
+                                </div>
+                            }
+                        </td>
+
+                        <td class="fw-bold text-dark">@item.Name</td>
+                        <td>@item.Age Yrs</td>
+                        <td>
+                            <span class="badge bg-light text-dark border px-2 py-1">@item.Gender</span>
+                        </td>
+                        <td>
+                            @if (item.Class != null)
+                            {
+                                <span class="fw-semibold text-primary">@item.Class.ClassName</span>
+                                <span class="badge bg-secondary ms-1">Section @item.Class.Section</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted small italic">Unassigned</span>
+                            }
+
+                        </td>
+
+                        <td class="pe-4 py-3 text-end">
+                            <div class="d-inline-flex gap-1">
+                                <!-- Edit Button -->
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning" title="Edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+
+                                <!-- Details Button -->
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Details">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+
+                                <!-- Delete Button -->
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Delete">
+                                    <i class="bi bi-trash3"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

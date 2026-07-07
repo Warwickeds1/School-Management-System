@@ -1,0 +1,61 @@
+﻿@model SchoolManagementSystem.Models.Fee
+
+@{
+    ViewData["Title"] = "Void Fee Statement";
+}
+
+<!-- Warning Alert Banner -->
+<div class="alert alert-danger border-0 shadow-sm rounded-3 mb-4 p-3">
+    <strong>⚠️ Critical Warning:</strong> You are about to void this fee/invoice transaction sheet. Voiding will permanently remove this financial record from the database audits.
+</div>
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Red Header Block -->
+    <div class="bg-danger text-white p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-exclamation-triangle-fill"></i> Void Statement Confirmation
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <!-- 1. Student Name -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Student Recipient</div>
+            <div class="col-sm-7 fw-bold text-dark">@(Model.Student?.Name ?? "Unknown Student")</div>
+        </div>
+
+        <!-- 2. Amount -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Amount Due</div>
+            <div class="col-sm-7 text-danger fw-bold">@Model.Amount.ToString("C")</div>
+        </div>
+
+        <!-- 3. Due Date -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Due Date</div>
+            <div class="col-sm-7 text-dark fw-semibold">@Model.DueDate.ToString("MMMM dd, yyyy")</div>
+        </div>
+
+        <!-- 4. Status -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Current Status</div>
+            <div class="col-sm-7 fw-bold text-dark">@Model.Status</div>
+        </div>
+
+        <!-- 5. Remarks -->
+        <div class="row mb-4">
+            <div class="col-sm-5 text-muted fw-semibold">Remarks</div>
+            <div class="col-sm-7 text-dark">@(string.IsNullOrEmpty(Model.Remarks) ? "None" : Model.Remarks)</div>
+        </div>
+
+        <!-- Action Form Engine -->
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-danger px-4 fw-semibold">Confirm Void Statement</button>
+            </div>
+        </form>
+    </div>
+</div>

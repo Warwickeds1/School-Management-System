@@ -1,0 +1,54 @@
+﻿@model SchoolManagementSystem.Models.Teacher
+
+@{
+    ViewData["Title"] = "Teacher Profile";
+}
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Gray Header Block -->
+    <div class="bg-primary text-white p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-person-badge"></i> Faculty Profile
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <!-- 1. Full Name -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Full Name</div>
+            <div class="col-sm-7 fw-bold text-dark">@Model.Name</div>
+        </div>
+
+        <!-- 2. Gender -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Gender</div>
+            <div class="col-sm-7 text-dark">@(string.IsNullOrEmpty(Model.Gender) ? "Not Specified" : Model.Gender)</div>
+        </div>
+
+        <!-- 3. Subject Expertise -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Subject Expertise</div>
+            <div class="col-sm-7 text-primary fw-medium">@Model.Subject</div>
+        </div>
+
+        <!-- 4. Email Address -->
+        <div class="row mb-3">
+            <div class="col-sm-5 text-muted fw-semibold">Email Address</div>
+            <div class="col-sm-7 text-dark">
+                <a href="mailto:@Model.Email" class="text-decoration-none">@Model.Email</a>
+            </div>
+        </div>
+
+        <!-- 5. Highest Qualification -->
+        <div class="row mb-4">
+            <div class="col-sm-5 text-muted fw-semibold">Highest Qualification</div>
+            <div class="col-sm-7 text-dark">@Model.Qualification</div>
+        </div>
+
+        <!-- Action Buttons Footer -->
+        <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+            <a asp-action="Index" class="btn btn-outline-secondary px-4">Back to Roster</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary px-4">Edit Profile</a>
+        </div>
+    </div>
+</div>

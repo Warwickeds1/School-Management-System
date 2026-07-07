@@ -1,0 +1,72 @@
+﻿@model SchoolManagementSystem.Models.Teacher
+
+@{
+    ViewData["Title"] = "Modify Faculty Record";
+}
+
+<div class="card shadow border-0 rounded-3 overflow-hidden">
+    <!-- Blue Header Block -->
+    <div class="bg-warning text-dark p-4">
+        <h3 class="fw-bold m-0 d-flex align-items-center gap-2">
+            <i class="bi bi-pencil-square"></i> Edit Faculty Member
+        </h3>
+    </div>
+
+    <div class="card-body p-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <!-- 1. Name Field -->
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label fw-semibold text-secondary">Full Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <!-- 2. Gender Field -->
+            <div class="mb-3">
+                <label asp-for="Gender" class="form-label fw-semibold text-secondary">Gender</label>
+                <select asp-for="Gender" class="form-select">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger small"></span>
+            </div>
+
+            <!-- 3. Subject Expertise Field -->
+            <div class="mb-3">
+                <label asp-for="Subject" class="form-label fw-semibold text-secondary">Subject Expertise</label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger small"></span>
+            </div>
+
+            <!-- 4. Email Field -->
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label fw-semibold text-secondary">Email Address</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <!-- 5. Qualification Field -->
+            <div class="mb-4">
+                <label asp-for="Qualification" class="form-label fw-semibold text-secondary">Qualification</label>
+                <input asp-for="Qualification" class="form-control" />
+                <span asp-validation-for="Qualification" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-end bg-light m-n4 mt-4 p-3 rounded-bottom border-top">
+                <a asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

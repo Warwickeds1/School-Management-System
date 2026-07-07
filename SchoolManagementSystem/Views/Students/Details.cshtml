@@ -1,0 +1,65 @@
+﻿@model SchoolManagementSystem.Models.Student
+@inject SchoolManagementSystem.Services.IPermissionService Permission
+
+@{
+    ViewData["Title"] = "Student Profile Details";
+}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-7 col-xl-6">
+            <div class="card shadow border-0 rounded-3">
+                <div class="bg-primary p-4 text-center text-white">
+                    @if (!string.IsNullOrEmpty(Model.ProfilePicturePath))
+                    {
+                        <img src="/images/students/@Model.ProfilePicturePath"
+                             class="rounded-circle bg-white shadow mb-2 object-fit-cover"
+                             style="width: 80px; height: 80px;"
+                             alt="@Model.Name's photo" />
+                    }
+                    else
+                    {
+                        <div class="rounded-circle bg-white text-primary d-inline-flex align-items-center justify-content-center fw-bold mb-2 shadow" style="width: 70px; height: 70px; font-size: 28px;">
+                            @(!string.IsNullOrEmpty(Model.Name) ? Model.Name.Substring(0, 1).ToUpper() : "S")
+                        </div>
+                    }
+                    <h3 class="fw-bold m-0">@Model.Name</h3>
+                    <span class="badge bg-light text-dark shadow-sm mt-1">Student Record Card</span>
+                </div>
+
+                <div class="card-body p-4">
+                    <h5 class="text-secondary fw-bold mb-4 border-bottom pb-2">Academic & Personal Summary</h5>
+
+                    <div class="d-flex flex-column gap-3 fs-6">
+                        <div class="d-flex">
+                            <span class="text-secondary fw-semibold" style="width: 180px;">Age:</span>
+                            <span class="text-dark fw-bold">@Model.Age Years Old</span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="text-secondary fw-semibold" style="width: 180px;">Gender:</span>
+                            <span class="text-dark">@Model.Gender</span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="text-secondary fw-semibold" style="width: 180px;">Assigned Class Track:</span>
+                            <span class="text-dark">
+                                <span class="text-primary fw-bold">Grade @Model.ClassId</span>
+                                <span class="badge bg-secondary ms-1">Section C</span>
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="text-secondary fw-semibold" style="width: 180px;">Classroom Room No.:</span>
+                            <span class="text-muted">77</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light d-flex justify-content-end gap-2 p-3 border-top-0">
+                    <a asp-action="Index" class="btn btn-secondary btn-sm px-3">Back to Directory</a>
+                    @if (Permission.HasAccess(User, "Students", "Update"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success btn-sm px-4">Edit Profile</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
