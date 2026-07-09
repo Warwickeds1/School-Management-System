@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\services\\excelcsvimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\services\\excelcsvimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\views\\students\\upload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\views\\students\\upload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\views\\reports\\studentdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\views\\reports\\studentdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\models\\viewmodels\\studentreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\models\\viewmodels\\studentreportviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\views\\report\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -19,8 +27,12 @@
       "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\views\\students\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\controllers\\studentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\services\\excelcsvimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\services\\excelcsvimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\views\\students\\upload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|solutionrelative:schoolmanagementsystem\\views\\students\\upload.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6848F4DD-9941-4219-8141-B4B683BDBEA3}|SchoolManagementSystem\\SchoolManagementSystem.csproj|c:\\users\\hasna\\source\\repos\\schoolmanagementsystem\\schoolmanagementsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +50,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentDashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Reports\\StudentDashboard.cshtml",
+              "RelativeDocumentMoniker": "SchoolManagementSystem\\Views\\Reports\\StudentDashboard.cshtml",
+              "ToolTip": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Reports\\StudentDashboard.cshtml",
+              "RelativeToolTip": "SchoolManagementSystem\\Views\\Reports\\StudentDashboard.cshtml",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAYwDoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-09T13:27:42.258Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "SchoolManagementSystem\\Controllers\\ReportsController.cs",
+              "ToolTip": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "SchoolManagementSystem\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAuwG8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T13:14:44.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StudentReportViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Models\\ViewModels\\StudentReportViewModel.cs",
+              "RelativeDocumentMoniker": "SchoolManagementSystem\\Models\\ViewModels\\StudentReportViewModel.cs",
+              "ToolTip": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Models\\ViewModels\\StudentReportViewModel.cs",
+              "RelativeToolTip": "SchoolManagementSystem\\Models\\ViewModels\\StudentReportViewModel.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAqwDEAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-09T11:23:48.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ExcelCsvImportService.cs",
               "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Services\\ExcelCsvImportService.cs",
               "RelativeDocumentMoniker": "SchoolManagementSystem\\Services\\ExcelCsvImportService.cs",
@@ -50,25 +105,23 @@
               "RelativeToolTip": "SchoolManagementSystem\\Services\\ExcelCsvImportService.cs",
               "ViewState": "AgIAAEYAAAAAAAAAAAAYwFwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-09T10:52:29.382Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-09T10:52:29.382Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Students\\Index.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementSystem\\Views\\Students\\Index.cshtml",
               "ToolTip": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Students\\Index.cshtml",
               "RelativeToolTip": "SchoolManagementSystem\\Views\\Students\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-09T10:32:08.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-09T10:32:08.801Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "StudentsController.cs",
               "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Controllers\\StudentsController.cs",
               "RelativeDocumentMoniker": "SchoolManagementSystem\\Controllers\\StudentsController.cs",
@@ -80,12 +133,8 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Upload.cshtml",
               "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Students\\Upload.cshtml",
               "RelativeDocumentMoniker": "SchoolManagementSystem\\Views\\Students\\Upload.cshtml",
@@ -93,12 +142,11 @@
               "RelativeToolTip": "SchoolManagementSystem\\Views\\Students\\Upload.cshtml",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAACoAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-09T10:14:36.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-09T10:14:36.032Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Program.cs",
               "RelativeDocumentMoniker": "SchoolManagementSystem\\Program.cs",
@@ -106,12 +154,24 @@
               "RelativeToolTip": "SchoolManagementSystem\\Program.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-09T10:12:15.231Z",
+              "WhenOpened": "2026-07-09T10:12:15.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Report\\Index.cshtml",
+              "RelativeDocumentMoniker": "SchoolManagementSystem\\Views\\Report\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Report\\Index.cshtml",
+              "RelativeToolTip": "SchoolManagementSystem\\Views\\Report\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-05T10:58:43.782Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "SchoolManagementSystem\\wwwroot\\css\\site.css",
@@ -120,19 +180,6 @@
               "ViewState": "AgIAAEIAAAAAAAAAAAAUwGEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-07-05T11:04:07.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Report\\Index.cshtml",
-              "RelativeDocumentMoniker": "SchoolManagementSystem\\Views\\Report\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Hasna\\source\\repos\\SchoolManagementSystem\\SchoolManagementSystem\\Views\\Report\\Index.cshtml",
-              "RelativeToolTip": "SchoolManagementSystem\\Views\\Report\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEQAAACBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-05T10:58:43.782Z",
-              "EditorCaption": ""
             }
           ]
         }

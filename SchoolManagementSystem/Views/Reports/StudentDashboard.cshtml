@@ -1,0 +1,132 @@
+﻿@model SchoolManagementSystem.Models.ViewModels.StudentReportViewModel
+
+@{
+    ViewData["Title"] = "Dynamic Student Reporting Engine";
+}
+
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0"><i class="bi bi-filter-square"></i> Customized Report Filters</h5>
+        </div>
+        <div class="card-body">
+            <!-- This form uses GET so selections are preserved directly inside the browser URL query-string -->
+            <form asp-action="StudentDashboard" method="get" class="row g-3">
+
+                <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Filter By Individual Student</label>
+                    <select asp-for="Filters.SelectedStudentId" asp-items="Model.StudentDropdown" class="form-select">
+                        <option value="">-- All Registered Students --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label font-weight-bold">Filter By Assigned Class Room</label>
+                    <select asp-for="Filters.SelectedClassId" asp-items="Model.ClassDropdown" class="form-select">
+                        <option value="">-- All Active Classes --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Accounting Fee State</label>
+                    <select asp-for="Filters.SelectedFeeStatus" class="form-select">
+                        <option value="All">All States</option>
+                        <option value="Paid">Paid Only</option>
+                        <option value="Pending">Pending Overdue</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end gap-2">
+                    <button type="submit" class="btn btn-primary w-100">Generate Query</button>
+                    <a asp-action="StudentDashboard" class="btn btn-outline-secondary">Reset</a>
+                </div>
+                
+
+                <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Target Year</label>
+                    <select asp-for="Filters.SelectedYear" asp-items="Model.YearDropdown" class="form-select">
+                        <option value="">-- Current Year --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Target Month</label>
+                    <select asp-for="Filters.SelectedMonth" asp-items="Model.MonthDropdown" class="form-select">
+                        <option value="">-- Current Month --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Attendance Limit</label>
+                    <select asp-for="Filters.AttendanceThreshold" class="form-select">
+                        <option value="All">All Records</option>
+                        <option value="Low">Critical (< 85%)</option>
+                        <option value="Normal">Satisfactory (≥ 85%)</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results Reporting Table Component -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+            <h6 class="mb-0">Execution Results Grid (@Model.ReportResults.Count records found)</h6>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0 align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Class Location</th>
+                            <th>Section</th>
+                            <th>Attendance Record</th>
+                            <th>Fee Accounting Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.ReportResults.Any())
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center py-4 text-muted">No records match the active database filter criteria.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var row in Model.ReportResults)
+                            {
+                                <tr>
+                                    <td><strong>#@row.StudentId</strong></td>
+                                    <td>@row.StudentName</td>
+                                    <td>@row.Age</td>
+                                    <td>@row.Gender</td>
+                                    <td><span class="badge bg-info text-dark">@row.ClassName</span></td>
+                                    <td><strong>@row.Section</strong></td>
+                                    <td>
+                                        <div class="progress" style="height: 18px; width: 120px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: @row.AttendancePercentage%">@row.AttendancePercentage%</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @if (row.FeeStatus == "Paid")
+                                        {
+                                            <span class="badge bg-success-subtle text-success px-3 py-2 border border-success">Paid Clearance</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger-subtle text-danger px-3 py-2 border border-danger">Pending Overdue</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

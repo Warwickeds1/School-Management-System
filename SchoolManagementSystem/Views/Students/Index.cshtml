@@ -10,13 +10,16 @@
     <h2 class="fw-bold m-0 text-dark">Students Directory</h2>
     @if (Permission.HasAccess(User, "Students", "Add"))
     {
-        <a asp-action="Create" class="btn btn-success d-flex align-items-center gap-2 px-4 shadow-sm">
-            <i class="bi bi-person-plus-fill"></i> Enrol New Student
-        </a>
+        <div class="d-flex flex-column gap-2" style="width: max-content;">
+            <a asp-action="Create" class="btn btn-success d-flex align-items-center gap-2 px-4 shadow-sm">
+                <i class="bi bi-person-plus-fill"></i> Enrol New Student
+            </a>
 
-        <a asp-action="Upload" class="btn btn-info">
-            <i class="bi bi-file-earmark-arrow-up"></i> Bulk Import Students
-        </a>
+            <a asp-action="Upload" class="btn btn-info d-flex align-items-center gap-2 px-4 shadow-sm">
+                <i class="bi bi-file-earmark-arrow-up"></i> Bulk Import Students
+            </a>
+        </div>
+
     }
 </div>
 
