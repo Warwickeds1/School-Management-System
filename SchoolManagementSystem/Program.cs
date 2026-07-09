@@ -17,6 +17,7 @@ builder.Services.AddAuthentication("CookieAuth")
     });
 
 builder.Services.AddScoped<IPermissionService, PermissionService>();
+builder.Services.AddScoped<ExcelCsvImportService>();
 
 var app = builder.Build();
 

@@ -12,7 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Security;
 using System.Threading.Tasks;
-using SchoolManagementSystem.Services; // Assuming you have a permission service for checking access rights
+using SchoolManagementSystem.Services; 
 
 
 namespace SchoolManagementSystem.Controllers
@@ -24,15 +24,16 @@ namespace SchoolManagementSystem.Controllers
         private readonly SchoolContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IPermissionService _permission;
-
-        public StudentsController(SchoolContext context, IWebHostEnvironment webHostEnvironment, IPermissionService permission)
+        private readonly ExcelCsvImportService _importService;
+        public StudentsController(SchoolContext context, IWebHostEnvironment webHostEnvironment, IPermissionService permission, ExcelCsvImportService importService)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
             _permission = permission;
-        }
+            _importService = importService;
+         }
 
-        // Replace the entire Index method with the following:
+        
         [Authorize(Roles = "Admin, Teacher, Student")]
         public async Task<IActionResult> Index(string searchString, int? ClassId)
         {
@@ -57,6 +58,41 @@ namespace SchoolManagementSystem.Controllers
             // 5. Return the list to the View
             return View(students);
         }
+
+        [HttpGet]
+        public IActionResult Upload() 
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file == null || file.Length == 0) 
+            {
+                TempData["ErrorMessage"] = "Please select a valid Csv file to upload.";
+                return View();
+            }
+
+            var result = await _importService.ImportStudentsFromCsvAsync(file);
+
+            if (result.IsSuccess)
+            {
+                TempData["SuccessMessage"] = $"{result.Message} Total Rows Imported: {result.RowsImported}";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewBag.ErrorMessage = result.Message;
+                return View();
+            
+            }
+
+        }
+        
+
 
         // GET: Students/Details/5
         [Authorize(Roles = "Admin, Teacher, Student")]

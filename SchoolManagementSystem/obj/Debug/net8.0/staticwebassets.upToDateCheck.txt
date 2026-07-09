@@ -1,3 +1,4 @@
+wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\profiles\a9dced33-f4f6-4580-8c28-10995e907f49_Test.jpeg
 wwwroot\images\students\1280a014457927d3144601cc8b006f93.jpg
@@ -74,4 +75,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\site.css

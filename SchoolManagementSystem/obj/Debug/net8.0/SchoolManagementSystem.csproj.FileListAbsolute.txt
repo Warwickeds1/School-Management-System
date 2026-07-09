@@ -252,3 +252,4 @@ C:\Users\Hasna\source\repos\SchoolManagementSystem\SchoolManagementSystem\obj\De
 C:\Users\Hasna\source\repos\SchoolManagementSystem\SchoolManagementSystem\obj\Debug\net8.0\SchoolManagementSystem.pdb
 C:\Users\Hasna\source\repos\SchoolManagementSystem\SchoolManagementSystem\obj\Debug\net8.0\SchoolManagementSystem.genruntimeconfig.cache
 C:\Users\Hasna\source\repos\SchoolManagementSystem\SchoolManagementSystem\obj\Debug\net8.0\ref\SchoolManagementSystem.dll
+C:\Users\Hasna\source\repos\SchoolManagementSystem\SchoolManagementSystem\obj\Debug\net8.0\SchoolManagementSystem.sourcelink.json
